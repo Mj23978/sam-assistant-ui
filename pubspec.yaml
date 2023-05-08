@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.19.6 <3.0.0"
 
 dependencies:
+  audio_waveforms: ^1.0.4
   auto_animated: ^3.1.0
   contained_tab_bar_view: ^0.8.0
   cupertino_icons: ^1.0.2
@@ -35,6 +36,7 @@ dependencies:
   hooks_riverpod: ^2.3.2
   http2: ^2.0.0
   image: ^4.0.15
+  image_picker: ^0.8.7+4
   interactive_bottom_sheet: ^0.1.2
   json_serializable: ^6.6.1
   just_the_tooltip: ^0.0.12
@@ -47,6 +49,7 @@ dependencies:
   rive: ^0.10.3
   rive_splash_screen: ^0.1.1
   sentry_flutter: ^7.5.1
+  timeago: ^3.0.0
   widgetbook: ^3.0.0-beta.13
 
 dev_dependencies:
@@ -68,3 +71,4 @@ flutter:
     - assets/translations/
     - assets/icons/
     - assets/rive/
+    - .env

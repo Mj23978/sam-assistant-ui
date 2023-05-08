@@ -11,9 +11,10 @@ class ChatServiceGRPC {
   ChatServiceGRPC(this.client);
 
   Future<Either<CompleteResponse, String>> sendMessage(
-      CompleteRequest request) async {
+      String message) async {
     try {
-      var response = await client.complete(request);
+      final request = CompleteRequest(message: message);
+      final response = await client.complete(request);
       return left(response);
     } on GrpcError catch (e) {
       return right(e.message ?? e.codeName);

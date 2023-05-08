@@ -18,8 +18,8 @@ class NetworkConfigModule {
       );
 
   SamChatClient get samChatClient => SamChatClient(
-      _createChannel(int.parse(dotenv.env['AUTH_SERVER_PORT'].toString()),
-          dotenv.env['AUTH_SERVER_URL']),
+      _createChannel(int.parse(dotenv.env['SAM_SERVER_PORT'].toString()),
+          dotenv.env['SAM_SERVER_URL']),
       interceptors: [_tokenInterceptor, _logInterceptor]);
 
 }

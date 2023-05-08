@@ -7,7 +7,10 @@ import 'package:just_the_tooltip/just_the_tooltip.dart';
 
 import '../../core/notifiers/home_provider.dart';
 import '../../core/providers.dart';
+import '../../utils/helpers.dart';
 import '../../widgets/buttons/space_menu_button.dart';
+import '../../widgets/chat/chat_view_appbar.dart';
+import '../../widgets/chat/chatui_textfield.dart';
 import '../../widgets/overlays/menu_with_buttons.dart';
 
 class SpaceTemplateView extends ConsumerWidget {
@@ -16,19 +19,45 @@ class SpaceTemplateView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final provider = ref.watch(homeProvider);
+    final grpc = ref.watch(chatServerProvider);
     return Column(
       children: [
-        const Divider(height: 2),
-        Flexible(
-          flex: 2,
-          child: Container(
-              color: Colors.transparent,
-              
-            )
+        Container(
+          alignment: Alignment.center,
+          child: ChatViewAppBar(
+            chatTitle: "Samochat Title",
+            chatTitleTextStyle: textStyle(context, 18, weight: FontWeight.w600),
+            // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            backGroundColor: Colors.transparent,
+          ),
         ),
         Flexible(
-          flex: 25,
-          child: Container(color: Colors.black,),
+          flex: 20,
+          child: Container(
+            color: Colors.transparent,
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 20,
+                  child: Container(
+                    color: Colors.transparent,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: ChatUITextField(
+                    focusNode: FocusNode(),
+                    onImageSelected: (v1, v2) {
+                      print(v1);
+                    },
+                    onPressed: () {},
+                    onRecordingComplete: (str) {},
+                    textEditingController: TextEditingController(),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );
