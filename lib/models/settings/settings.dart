@@ -10,6 +10,8 @@ class Settings {
 
   String local;
 
+  String? markdownTheme;
+
   @Property(type: PropertyType.date)
   DateTime? date;
 }

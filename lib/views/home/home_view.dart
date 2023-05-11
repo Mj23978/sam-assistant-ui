@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/providers.dart';
+import 'sidebar.dart';
 import 'template_view.dart';
 
 class HomeView extends ConsumerWidget {

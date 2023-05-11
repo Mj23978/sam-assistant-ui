@@ -1,6 +1,3 @@
-import 'dart:io' if (kIsWeb) 'dart:html';
-import 'package:flutter/foundation.dart' show kIsWeb;
-
 import 'package:flutter/material.dart';
 
 class ChatViewAppBar extends StatelessWidget {
@@ -40,12 +37,14 @@ class ChatViewAppBar extends StatelessWidget {
       child: Container(
         padding: padding ??
             EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 8,
-              bottom: 4,
-              left: 12,
-              right: 12
-            ),
-        color: backGroundColor ?? Colors.transparent,
+                top: MediaQuery.of(context).padding.top + 8,
+                bottom: 4,
+                left: 12,
+                right: 12),
+        decoration: BoxDecoration(
+          border: Border.all(width: 0),
+          color: backGroundColor ?? Colors.transparent,
+        ),
         child: Row(
           children: [
             Expanded(

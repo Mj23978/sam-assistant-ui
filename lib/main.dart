@@ -11,6 +11,7 @@ import 'package:objectbox/objectbox.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'models/settings/settings.dart';
+import 'models/user/user.dart';
 import 'utils/helpers.dart';
 import 'utils/objectbox.dart';
 import 'views/home/home_view.dart';
@@ -25,7 +26,7 @@ Future<void> main() async {
 
   initConfig();
   await dotenv.load(fileName: ".env");
-  
+
   await SentryFlutter.init(
     (options) {
       options.dsn = dotenv.env['SENTRY_DSN'];
@@ -33,7 +34,7 @@ Future<void> main() async {
     },
     // run the app
     appRunner: () => runZonedGuarded(
-      () => runApp(
+        () => runApp(
               EasyLocalization(
                 supportedLocales: const [
                   Locale("en", "US"),
@@ -46,8 +47,8 @@ Future<void> main() async {
                 ),
               ),
             ),
-      (error, stack) => logger.e(error)),
-    );
+        (error, stack) => logger.e(error)),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -101,6 +102,11 @@ final ThemeData mDefaultTheme = ThemeData(
 );
 
 initConfig() {
+  // Box<User> userBox = objectbox.store.box<User>();
+  // if (userBox.count() == 0) {
+  //   User user = User(uuid: "Mj");
+  //   userBox.put(user);
+  // }
   Box<Settings> conf = objectbox.store.box<Settings>();
   if (conf.count() == 0) {
     conf.put(Settings(const Locale("fa", "IR").toString()));

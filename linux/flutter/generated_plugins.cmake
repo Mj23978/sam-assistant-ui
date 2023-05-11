@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   objectbox_sync_flutter_libs
   sentry_flutter
+  url_launcher_linux
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

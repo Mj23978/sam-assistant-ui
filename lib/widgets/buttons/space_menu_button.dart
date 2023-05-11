@@ -22,7 +22,6 @@ List<SpaceMenuButton> spaceActionTraySubtasksAction = [
   AsSeprateTaskButton()
 ];
 
-
 List<SpaceMenuButton> spaceActionTraySortBy = [
   SortByStatusButton(),
   SortByTaskNameButton(),
@@ -36,7 +35,6 @@ List<SpaceMenuButton> spaceActionTraySortBy = [
   SortByTimeTrackedButton(),
   SortByTimeEstimatedButton(),
 ];
-
 
 List<SpaceMenuButton> spaceTitleMoreAction = [
   CreateNewSpaceTitleButton(),
@@ -56,7 +54,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
   SpaceMenuButton(
     addSwitch: true,
     prefixWidgets: [
-      Text('Task Locations',
+      const Text('Task Locations',
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -64,7 +62,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
   SpaceMenuButton(
     addSwitch: true,
     prefixWidgets: [
-      Text('Subtask pervent names',
+      const Text('Subtask pervent names',
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -73,7 +71,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Text('Closed subtasks',
+      const Text('Closed subtasks',
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -82,7 +80,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Text("Show assignees",
+      const Text("Show assignees",
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -91,7 +89,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Text("Collapse empty columns",
+      const Text("Collapse empty columns",
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -100,7 +98,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Text("Show images on cards",
+      const Text("Show images on cards",
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -109,7 +107,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Text("Show task IDs",
+      const Text("Show task IDs",
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -118,7 +116,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Text("Show time tracker",
+      const Text("Show time tracker",
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -127,7 +125,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Text("Tasks in Multiple Lists",
+      const Text("Tasks in Multiple Lists",
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -135,7 +133,7 @@ List<SpaceMenuButton> spaceActionTrayShowActions = [
   SpaceMenuButton(
     section: 1,
     prefixWidgets: [
-      Text("Custom Fields",
+      const Text("Custom Fields",
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -146,11 +144,11 @@ List<SpaceMenuButton> spaceActionTrayMoreActions = [
   SpaceMenuButton(
     addSwitch: true,
     prefixWidgets: [
-      Icon(Icons.save_outlined, size: 20),
-      SizedBox(
+      const Icon(Icons.save_outlined, size: 20),
+      const SizedBox(
         width: 8,
       ),
-      Text('Autosave view',
+      const Text('Autosave view',
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -159,11 +157,12 @@ List<SpaceMenuButton> spaceActionTrayMoreActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Icon(Icons.safety_check_outlined, size: 20),
-      SizedBox(
+      const Icon(Icons.safety_check_outlined, size: 20),
+      const SizedBox(
         width: 8,
       ),
-      Text('Protect view', style: TextStyle(fontSize: 12, color: Colors.black)),
+      const Text('Protect view',
+          style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
   ),
@@ -171,11 +170,12 @@ List<SpaceMenuButton> spaceActionTrayMoreActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Icon(Icons.lock_outline, size: 20),
-      SizedBox(
+      const Icon(Icons.lock_outline, size: 20),
+      const SizedBox(
         width: 8,
       ),
-      Text('Private view', style: TextStyle(fontSize: 12, color: Colors.black)),
+      const Text('Private view',
+          style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
   ),
@@ -183,11 +183,11 @@ List<SpaceMenuButton> spaceActionTrayMoreActions = [
     section: 1,
     addSwitch: true,
     prefixWidgets: [
-      Icon(Icons.home_outlined, size: 20),
-      SizedBox(
+      const Icon(Icons.home_outlined, size: 20),
+      const SizedBox(
         width: 8,
       ),
-      Text('Default for all',
+      const Text('Default for all',
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -195,11 +195,11 @@ List<SpaceMenuButton> spaceActionTrayMoreActions = [
   SpaceMenuButton(
     section: 2,
     prefixWidgets: [
-      Icon(Icons.power_settings_new_outlined, size: 20),
-      SizedBox(
+      const Icon(Icons.power_settings_new_outlined, size: 20),
+      const SizedBox(
         width: 8,
       ),
-      Text('Reset view to Defaults',
+      const Text('Reset view to Defaults',
           style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
@@ -217,68 +217,70 @@ List<SpaceMenuButton> spaceActionTrayGroupbyActions = [
         width: 22,
         color: Colors.blue,
       ),
-      SizedBox(
+      const SizedBox(
         width: 8,
       ),
-      Text('Status', style: TextStyle(fontSize: 12, color: Colors.black)),
+      const Text('Status', style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
   ),
   SpaceMenuButton(
     addSelect: true,
     prefixWidgets: [
-      Icon(Icons.people_outline, size: 20),
-      SizedBox(
+      const Icon(Icons.people_outline, size: 20),
+      const SizedBox(
         width: 8,
       ),
-      Text('Assignee', style: TextStyle(fontSize: 12, color: Colors.black)),
+      const Text('Assignee',
+          style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
   ),
   SpaceMenuButton(
     addSelect: true,
     prefixWidgets: [
-      Icon(FontAwesomeIcons.tags, size: 18),
-      SizedBox(
+      const Icon(FontAwesomeIcons.tags, size: 18),
+      const SizedBox(
         width: 8,
       ),
-      Text('Tags', style: TextStyle(fontSize: 12, color: Colors.black)),
+      const Text('Tags', style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
   ),
   SpaceMenuButton(
     addSelect: true,
     prefixWidgets: [
-      Icon(Icons.calendar_today_outlined, size: 18),
-      SizedBox(
+      const Icon(Icons.calendar_today_outlined, size: 18),
+      const SizedBox(
         width: 8,
       ),
-      Text('Due date', style: TextStyle(fontSize: 12, color: Colors.black)),
+      const Text('Due date',
+          style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
   ),
   SpaceMenuButton(
     addSelect: true,
     prefixWidgets: [
-      Icon(FontAwesomeIcons.ban, size: 18),
-      SizedBox(
+      const Icon(FontAwesomeIcons.ban, size: 18),
+      const SizedBox(
         width: 8,
       ),
-      Text('None', style: TextStyle(fontSize: 12, color: Colors.black)),
+      const Text('None', style: TextStyle(fontSize: 12, color: Colors.black)),
     ],
     suffixWidgets: [],
   ),
   SpaceMenuButton(
     prefixWidgets: [
-      SizedBox(width: 2),
+      const SizedBox(width: 2),
       SvgPicture.asset(
         'assets/icons/edit_note.svg',
         height: 16,
         width: 16,
         color: Colors.blue,
       ),
-      SizedBox(width: 8),
-      Text(
+      const SizedBox(width: 8),
+      const Text(
         'Custom Fields',
         style: TextStyle(fontSize: 12, color: Colors.black),
       ),
@@ -1224,7 +1226,7 @@ class CustomTaskFieldsButton extends SpaceMenuButton {
     this.space = 8,
   }) : super(
           prefixWidgets: [
-            SizedBox(width: 2),
+            const SizedBox(width: 2),
             SvgPicture.asset(
               'assets/icons/edit_note.svg',
               height: iconSize,

@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:1791444652127663139",
-      "lastPropertyId": "3:5052026957338895309",
+      "lastPropertyId": "4:7619380834507397720",
       "name": "Settings",
       "properties": [
         {
@@ -23,44 +23,139 @@
           "id": "3:5052026957338895309",
           "name": "date",
           "type": 10
+        },
+        {
+          "id": "4:7619380834507397720",
+          "name": "markdownTheme",
+          "type": 9
         }
       ],
       "relations": []
     },
     {
-      "id": "2:3114424770088938115",
-      "lastPropertyId": "3:1843866440201857929",
-      "name": "User",
+      "id": "3:6863820780849715992",
+      "lastPropertyId": "5:3973376905917922593",
+      "name": "Chat",
       "properties": [
         {
-          "id": "1:3465476306820637921",
+          "id": "1:1854162345565460503",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:1141271802953757702",
-          "name": "name",
+          "id": "2:3262986578762644253",
+          "name": "title",
           "type": 9
         },
         {
-          "id": "3:1843866440201857929",
-          "name": "date",
+          "id": "3:8578122077504131012",
+          "name": "createdAt",
           "type": 10
+        },
+        {
+          "id": "4:7026314025783238378",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "5:3973376905917922593",
+          "name": "chatId",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:8202169626078336623",
+      "lastPropertyId": "6:6344739436865735929",
+      "name": "Message",
+      "properties": [
+        {
+          "id": "1:3785055661168727318",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3575425555113017996",
+          "name": "message",
+          "type": 9
+        },
+        {
+          "id": "3:1036430486174498534",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "4:6140722513091328345",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "5:4505583122688455201",
+          "name": "sendBy",
+          "type": 9
+        },
+        {
+          "id": "6:6344739436865735929",
+          "name": "chatId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:8103765682439702353",
+          "relationTarget": "Chat"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:3402809370757882970",
+      "lastPropertyId": "5:1898721989626777754",
+      "name": "User",
+      "properties": [
+        {
+          "id": "1:4812804405072832299",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "3:4891402666728796127",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "4:8208400706605854455",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "5:1898721989626777754",
+          "name": "uuid",
+          "type": 9
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "2:3114424770088938115",
-  "lastIndexId": "0:0",
+  "lastEntityId": "5:3402809370757882970",
+  "lastIndexId": "1:8103765682439702353",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    3114424770088938115
+  ],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    1843866440201857929,
+    3465476306820637921,
+    1141271802953757702,
+    664712598218521833,
+    3992342964203326367,
+    670274640652849331
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

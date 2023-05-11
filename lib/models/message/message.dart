@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:objectbox/objectbox.dart';
 
+import '../chat/chat.dart';
 import '../enums.dart';
 
 @Entity()
@@ -25,6 +26,8 @@ class Message {
 
   @Transient()
   Duration? voiceMessageDuration;
+
+  final chat = ToOne<Chat>();
 
   Message({
     required this.message,
