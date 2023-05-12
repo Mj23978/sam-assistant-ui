@@ -20,7 +20,7 @@ class HomeProvider extends ChangeNotifier {
   HomeProvider(this.appProvider) {
     final allChats = chatBox.getAll();
     if (allChats.isEmpty) {
-      addUserChat();
+      addUserChat(force: true);
     } else {
       mainChat = allChats.last;
       userChats.addAll(allChats);

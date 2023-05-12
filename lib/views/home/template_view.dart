@@ -48,10 +48,10 @@ class SpaceTemplateView extends ConsumerWidget {
                       ),
                     ),
                     onPressed: () async {
-                      provider.addMessagetoMainChat(
-                          "user", provider.homeTextFieldController.text);
-                      final response = await grpc
-                          .sendMessage(provider.homeTextFieldController.text);
+                      final text = provider.homeTextFieldController.text;
+                      provider.homeTextFieldController.clear();
+                      provider.addMessagetoMainChat("user", text);
+                      final response = await grpc.sendMessage(text);
                       response.fold(
                         (CompleteResponse response) {
                           provider.addMessagetoMainChat(
@@ -61,7 +61,6 @@ class SpaceTemplateView extends ConsumerWidget {
                         (String error) {},
                       );
                       if (response.isLeft()) {}
-                      provider.homeTextFieldController.clear();
                     },
                     onRecordingComplete: (str) {},
                     textEditingController: provider.homeTextFieldController,
@@ -103,7 +102,6 @@ class ChatOptionsView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(homeProvider);
-
     return AnimatedContainer(
       duration: const Duration(seconds: 1),
       padding: provider.chatOptionsCollapsed
@@ -173,15 +171,13 @@ class ChatMessageView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(homeProvider);
-    return ListView(
-      // reverse: true,
-      children: [
-        ...provider.mainChat.messages.map<Widget>((element) {
-          return SizedBox(
-            height: estimateNumberOfLines(element.message) * 40,
-            child: MessageWidget(
+    return SizedBox(
+      child: ListView(
+        children: [
+          ...provider.mainChat.messages.map<Widget>((element) {
+            return MessageWidget(
               text: element.message,
-              color: const Color(0xff444654),
+              color: element.sendBy != "bot" ? const Color(0xff343541) :  const Color(0xff444654),
               isSender: false,
               sent: true,
               seen: true,
@@ -189,10 +185,12 @@ class ChatMessageView extends ConsumerWidget {
                 color: Color(0xffD1D5DB),
                 fontSize: 16,
               ),
-            ),
-          );
-        })
-      ],
+            ).pSy(x: 12, y: 1);
+          }),
+          SizedBox(height: 20,)
+
+        ],
+      ),
     );
   }
 }
@@ -223,14 +221,13 @@ class MessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(6)
-      ),
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(6)),
       child: Consumer(builder: (context, ref, child) {
         final provider = ref.watch(homeProvider);
         final app = ref.watch(appProvider);
         return MarkdownWidget(
+          shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           data: text,
           config: MarkdownConfig(
@@ -284,7 +281,7 @@ class MessageWidget extends StatelessWidget {
           ),
         );
       }),
-    ).pSy(x: 12, y: 4);
+    );
   }
 }
 
