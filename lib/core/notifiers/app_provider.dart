@@ -26,20 +26,19 @@ class AppProvider extends ChangeNotifier {
     appSettings = conf.getAll().first;
   }
 
-  setDatabase(Settings settings) async {
+  void setDatabase(Settings settings) async {
     appSettings = settings;
     notifyListeners();
   }
 
-  setMarkdownTheme(String theme) async {
+  void setMarkdownTheme(String theme) async {
     Box<Settings> settingBox = objectbox.store.box<Settings>();
     final settings = settingBox.getAll().first;
     settings.markdownTheme = theme;
     settingBox.put(settings, mode: PutMode.update);
+    appSettings = settings;
     notifyListeners();
   }
-
-  var roles = <String>[];
 
   close() async {}
 }

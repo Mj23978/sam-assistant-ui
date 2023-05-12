@@ -27,13 +27,14 @@ class Message {
   @Transient()
   Duration? voiceMessageDuration;
 
-  final chat = ToOne<Chat>();
+  ToOne<Chat> chat;
 
   Message({
     required this.message,
     required this.sendBy,
     required this.createdAt,
     required this.updatedAt,
+    required this.chat,
     this.messageType = MessageType.text,
     this.voiceMessageDuration,
   })  : key = GlobalKey();

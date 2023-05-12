@@ -10,6 +10,20 @@ dynamic enumFromString(String? value, dynamic t) {
       (e) => e.toString().split('.')[1].toUpperCase() == value!.toUpperCase());
 }
 
+int estimateNumberOfLines(String text) {
+  if (text.isEmpty) {
+    return 0;
+  }
+
+  final numberOfLines = text.split('\n').length;
+  const estimatedCharPerLine = 50; // Change this value based on your needs
+  final textLengthWithoutNewlines = text.replaceAll('\n', '').length;
+  final estimatedLineLength = textLengthWithoutNewlines / estimatedCharPerLine;
+  final estimatedNumberOfLines = (estimatedLineLength).ceil();
+
+  return estimatedNumberOfLines;
+}
+
 final logger = Logger();
 
 TextStyle textStyle(

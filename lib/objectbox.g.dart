@@ -88,47 +88,6 @@ final _entities = <ModelEntity>[
         ModelBacklink(name: 'messages', srcEntity: 'Message', srcField: 'chat')
       ]),
   ModelEntity(
-      id: const IdUid(4, 8202169626078336623),
-      name: 'Message',
-      lastPropertyId: const IdUid(6, 6344739436865735929),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 3785055661168727318),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 3575425555113017996),
-            name: 'message',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 1036430486174498534),
-            name: 'createdAt',
-            type: 10,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 6140722513091328345),
-            name: 'updatedAt',
-            type: 10,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(5, 4505583122688455201),
-            name: 'sendBy',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(6, 6344739436865735929),
-            name: 'chatId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(1, 8103765682439702353),
-            relationTarget: 'Chat')
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
       id: const IdUid(5, 3402809370757882970),
       name: 'User',
       lastPropertyId: const IdUid(5, 1898721989626777754),
@@ -156,6 +115,47 @@ final _entities = <ModelEntity>[
             flags: 0)
       ],
       relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(6, 2757852086727240811),
+      name: 'Message',
+      lastPropertyId: const IdUid(6, 4761966727823866924),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 3448852854702652236),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 2164042465075750838),
+            name: 'message',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 8013969175878244663),
+            name: 'createdAt',
+            type: 10,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 50743233017506710),
+            name: 'updatedAt',
+            type: 10,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 5987310478688586699),
+            name: 'sendBy',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 4761966727823866924),
+            name: 'chatId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(3, 7408270987136393524),
+            relationTarget: 'Chat')
+      ],
+      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
 ];
 
@@ -179,19 +179,26 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(5, 3402809370757882970),
-      lastIndexId: const IdUid(1, 8103765682439702353),
+      lastEntityId: const IdUid(6, 2757852086727240811),
+      lastIndexId: const IdUid(3, 7408270987136393524),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [3114424770088938115],
-      retiredIndexUids: const [],
+      retiredEntityUids: const [3114424770088938115, 8202169626078336623],
+      retiredIndexUids: const [8103765682439702353],
       retiredPropertyUids: const [
         1843866440201857929,
         3465476306820637921,
         1141271802953757702,
         664712598218521833,
         3992342964203326367,
-        670274640652849331
+        670274640652849331,
+        6344739436865735929,
+        3785055661168727318,
+        3575425555113017996,
+        1036430486174498534,
+        6140722513091328345,
+        4505583122688455201,
+        7082805019965779744
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -281,8 +288,41 @@ ModelDefinition getObjectBoxModel() {
                   6, object.id, (Message srcObject) => srcObject.chat));
           return object;
         }),
-    Message: EntityDefinition<Message>(
+    User: EntityDefinition<User>(
         model: _entities[2],
+        toOneRelations: (User object) => [],
+        toManyRelations: (User object) => {},
+        getId: (User object) => object.id,
+        setId: (User object, int id) {
+          object.id = id;
+        },
+        objectToFB: (User object, fb.Builder fbb) {
+          final uuidOffset = fbb.writeString(object.uuid);
+          fbb.startTable(6);
+          fbb.addInt64(0, object.id);
+          fbb.addInt64(2, object.createdAt.millisecondsSinceEpoch);
+          fbb.addInt64(3, object.updatedAt.millisecondsSinceEpoch);
+          fbb.addOffset(4, uuidOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = User(
+              uuid: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 12, ''))
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
+            ..createdAt = DateTime.fromMillisecondsSinceEpoch(
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0))
+            ..updatedAt = DateTime.fromMillisecondsSinceEpoch(
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0));
+
+          return object;
+        }),
+    Message: EntityDefinition<Message>(
+        model: _entities[3],
         toOneRelations: (Message object) => [object.chat],
         toManyRelations: (Message object) => {},
         getId: (Message object) => object.id,
@@ -314,44 +354,12 @@ ModelDefinition getObjectBoxModel() {
               createdAt: DateTime.fromMillisecondsSinceEpoch(
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0)),
               updatedAt: DateTime.fromMillisecondsSinceEpoch(
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0)))
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0)),
+              chat: ToOne(
+                  targetId: const fb.Int64Reader()
+                      .vTableGet(buffer, rootOffset, 14, 0)))
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          object.chat.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
           object.chat.attach(store);
-          return object;
-        }),
-    User: EntityDefinition<User>(
-        model: _entities[3],
-        toOneRelations: (User object) => [],
-        toManyRelations: (User object) => {},
-        getId: (User object) => object.id,
-        setId: (User object, int id) {
-          object.id = id;
-        },
-        objectToFB: (User object, fb.Builder fbb) {
-          final uuidOffset = fbb.writeString(object.uuid);
-          fbb.startTable(6);
-          fbb.addInt64(0, object.id);
-          fbb.addInt64(2, object.createdAt.millisecondsSinceEpoch);
-          fbb.addInt64(3, object.updatedAt.millisecondsSinceEpoch);
-          fbb.addOffset(4, uuidOffset);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = User(
-              uuid: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 12, ''))
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..createdAt = DateTime.fromMillisecondsSinceEpoch(
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0))
-            ..updatedAt = DateTime.fromMillisecondsSinceEpoch(
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0));
-
           return object;
         })
   };
@@ -397,45 +405,45 @@ class Chat_ {
   static final chatId = QueryStringProperty<Chat>(_entities[1].properties[4]);
 }
 
-/// [Message] entity fields to define ObjectBox queries.
-class Message_ {
-  /// see [Message.id]
-  static final id = QueryIntegerProperty<Message>(_entities[2].properties[0]);
-
-  /// see [Message.message]
-  static final message =
-      QueryStringProperty<Message>(_entities[2].properties[1]);
-
-  /// see [Message.createdAt]
-  static final createdAt =
-      QueryIntegerProperty<Message>(_entities[2].properties[2]);
-
-  /// see [Message.updatedAt]
-  static final updatedAt =
-      QueryIntegerProperty<Message>(_entities[2].properties[3]);
-
-  /// see [Message.sendBy]
-  static final sendBy =
-      QueryStringProperty<Message>(_entities[2].properties[4]);
-
-  /// see [Message.chat]
-  static final chat =
-      QueryRelationToOne<Message, Chat>(_entities[2].properties[5]);
-}
-
 /// [User] entity fields to define ObjectBox queries.
 class User_ {
   /// see [User.id]
-  static final id = QueryIntegerProperty<User>(_entities[3].properties[0]);
+  static final id = QueryIntegerProperty<User>(_entities[2].properties[0]);
 
   /// see [User.createdAt]
   static final createdAt =
-      QueryIntegerProperty<User>(_entities[3].properties[1]);
+      QueryIntegerProperty<User>(_entities[2].properties[1]);
 
   /// see [User.updatedAt]
   static final updatedAt =
-      QueryIntegerProperty<User>(_entities[3].properties[2]);
+      QueryIntegerProperty<User>(_entities[2].properties[2]);
 
   /// see [User.uuid]
-  static final uuid = QueryStringProperty<User>(_entities[3].properties[3]);
+  static final uuid = QueryStringProperty<User>(_entities[2].properties[3]);
+}
+
+/// [Message] entity fields to define ObjectBox queries.
+class Message_ {
+  /// see [Message.id]
+  static final id = QueryIntegerProperty<Message>(_entities[3].properties[0]);
+
+  /// see [Message.message]
+  static final message =
+      QueryStringProperty<Message>(_entities[3].properties[1]);
+
+  /// see [Message.createdAt]
+  static final createdAt =
+      QueryIntegerProperty<Message>(_entities[3].properties[2]);
+
+  /// see [Message.updatedAt]
+  static final updatedAt =
+      QueryIntegerProperty<Message>(_entities[3].properties[3]);
+
+  /// see [Message.sendBy]
+  static final sendBy =
+      QueryStringProperty<Message>(_entities[3].properties[4]);
+
+  /// see [Message.chat]
+  static final chat =
+      QueryRelationToOne<Message, Chat>(_entities[3].properties[5]);
 }

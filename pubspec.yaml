@@ -55,6 +55,7 @@ dependencies:
   rive: ^0.10.3
   rive_splash_screen: ^0.1.1
   sentry_flutter: ^7.5.1
+  super_clipboard: ^0.3.0+2
   timeago: ^3.0.0
   video_player: ^2.6.1
   widgetbook: ^3.0.0-beta.13

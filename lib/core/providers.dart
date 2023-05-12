@@ -13,14 +13,12 @@ final ProviderFamily<Logger, String> loggerProvider =
   return getLogger(scope);
 });
 
-final appProvider = Provider(
-  (ref) => AppProvider(),
-);
+final appProvider = ChangeNotifierProvider((_) => AppProvider());
 
 final homeProvider = ChangeNotifierProvider((ref) {
-  return HomeProvider(ref.watch(appProvider));
+  final app = ref.read(appProvider);
+  return HomeProvider(app);
 });
-
 
 final splashProvider =
     StateNotifierProvider<SplashNotifier, SplashState>((ref) {

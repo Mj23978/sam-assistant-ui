@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
+import 'package:sam_assistant/models/message/message.dart';
 import 'package:sam_assistant/widgets/markdown_custom/markdown_themes.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../generated/chat.pb.dart';
 import '../../main.dart';
 import '../../models/chat/chat.dart';
 import '../../objectbox.g.dart';
@@ -28,7 +30,7 @@ class HomeProvider extends ChangeNotifier {
   bool titleHovered = false;
   bool sidebarHovered = false;
   bool sideSearchHovered = false;
-  bool chatOptionsCollapsed = false;
+  bool chatOptionsCollapsed = true;
   TextEditingController homeTextFieldController = TextEditingController();
   JustTheController sidebarSettingsMenuController = JustTheController();
 
@@ -127,13 +129,27 @@ class HomeProvider extends ChangeNotifier {
   }
 
   SamMarkdownThemes appMarkdownTheme() {
-    return _findMarkdownTheme(appProvider.appSettings.markdownTheme);
+    return findMarkdownTheme(appProvider.appSettings.markdownTheme);
   }
 
-  SamMarkdownThemes _findMarkdownTheme(String? themeName) {
+  SamMarkdownThemes findMarkdownTheme(String? themeName) {
     return samMarkdownThemes.firstWhere(
       (element) => element.themeName == themeName,
       orElse: () => samMarkdownThemes.first,
     );
+  }
+
+  Message addMessagetoMainChat(String from, String response) {
+    final message = Message(
+      message: response,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      sendBy: from,
+      chat: ToOne(target:  mainChat)
+    );
+    mainChat.messages.add(message);
+    chatBox.put(mainChat);
+    notifyListeners();
+    return message;
   }
 }
